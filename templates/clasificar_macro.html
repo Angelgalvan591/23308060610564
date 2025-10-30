@@ -2,53 +2,71 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Clasificador de Macronutrientes</title>
+    <title>Clasificador de Macronutrientes kalimaneados XD</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body style="background-color: gray; class="container mt-4">
-    <h2 class="mb-4">examen unidad 2 :D</h2>
-    <h6 class="mb-4">paseme profe plis 🙏</h6>
+<body style="background-image: url('https://static.vecteezy.com/system/resources/previews/022/188/770/original/black-stripes-with-green-lines-background-free-vector.jpg'); background-size: cover; background-position: center;">
+    <div class="container py-5">
+        <div class="text-center mb-4">
+            <h2 class="text-warning">Examen Unidad 2</h2>
+            <h6 class="text-secondary">Paseme profe plis</h6>
+        </div>
 
-    
-    <form method="POST" class="row mb-4">
-        <div class="col-md-4 mb-2">
-            <input type="text" name="nombre" class="form-control" placeholder="Nombre del alimento" required>
+        <div class="card shadow-sm mb-4">
+            <div class="card-body bg-light bg-opacity-75">
+                <form method="POST" class="row g-3">
+                    <div class="col-md-4">
+                        <input type="text" name="nombre" class="form-control" placeholder="Nombre del alimento" required>
+                    </div>
+                    <div class="col-md-2">
+                        <input type="number" name="grasas" step="0.1" class="form-control" placeholder="Grasas (g)" required>
+                    </div>
+                    <div class="col-md-2">
+                        <input type="number" name="proteinas" step="0.1" class="form-control" placeholder="Proteínas (g)" required>
+                    </div>
+                    <div class="col-md-2">
+                        <input type="number" name="carbohidratos" step="0.1" class="form-control" placeholder="Carbohidratos (g)" required>
+                    </div>
+                    <div class="col-md-2 d-grid">
+                        <button type="submit" class="btn btn-warning">Clasificar</button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="col-md-2 mb-2">
-            <input type="number" name="grasas" step="0.1" class="form-control" placeholder="Grasas (g)" required>
-        </div>
-        <div class="col-md-2 mb-2">
-            <input type="number" name="proteinas" step="0.1" class="form-control" placeholder="Proteínas (g)" required>
-        </div>
-        <div class="col-md-2 mb-2">
-            <input type="number" name="carbohidratos" step="0.1" class="form-control" placeholder="Carbohidratos (g)" required>
-        </div>
-        <div class="col-md-2 mb-2">
-            <button type="submit" class="btn btn-primary w-100">Clasificar</button>
-        </div>
-    </form>
 
-    
-    {% if alimentos %}
-    <h4>Alimentos Clasificados</h4>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Alimento</th>
-                <th>Clasificación</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for a in alimentos %}
-            <tr>
-                <td>{{ a.nombre }}</td>
-                <td>{{ a.clasificacion }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    {% else %}
-    <p class="text-muted">No hay alimentos clasificados aún.</p>
-    {% endif %}
+        {% if alimentos %}
+        <div class="card mb-3">
+            <div class="card-header bg-warning text-white">
+                <h4 class="mb-0">Alimentos Clasificados</h4>
+            </div>
+            <div class="card-body bg-light bg-opacity-75">
+                <table class="table table-striped table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Alimento</th>
+                            <th>Clasificación</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for a in alimentos %}
+                        <tr>
+                            <td>{{ a.nombre }}</td>
+                            <td>{{ a.clasificacion }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <form method="POST" action="/limpiar_lista" class="text-end mt-3">
+                    <button type="submit" class="btn btn-danger">Limpiar lista</button>
+                </form>
+            </div>
+        </div>
+        {% else %}
+        <div class="alert alert-warning text-center mt-4">
+            No hay alimentos clasificados aún.
+        </div>
+        {% endif %}
+    </div>
 </body>
 </html>
